@@ -18,3 +18,10 @@ extension UIView {
         set { layer.cornerRadius = newValue }
     }
 }
+
+extension UIButton {
+    // Natural corner radius
+    public func roundCorner() {
+        layer.cornerRadius = min(bounds.width / 2, bounds.height / 2)
+    }
+}
