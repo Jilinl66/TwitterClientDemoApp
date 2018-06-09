@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		44688F7E20CBA25D005C1B38 /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44688F7C20CBA25D005C1B38 /* TwitterCore.framework */; };
+		44688F7F20CBA25D005C1B38 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44688F7D20CBA25D005C1B38 /* TwitterKit.framework */; };
 		44B865B520CB99470003D85D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B865B420CB99470003D85D /* AppDelegate.swift */; };
 		44B865B720CB99470003D85D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B865B620CB99470003D85D /* ViewController.swift */; };
 		44B865BA20CB99470003D85D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44B865B820CB99470003D85D /* Main.storyboard */; };
@@ -34,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		44688F7C20CBA25D005C1B38 /* TwitterCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterCore.framework; path = Carthage/Build/iOS/TwitterCore.framework; sourceTree = "<group>"; };
+		44688F7D20CBA25D005C1B38 /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterKit.framework; path = Carthage/Build/iOS/TwitterKit.framework; sourceTree = "<group>"; };
 		44B865B120CB99470003D85D /* TwitterClientDemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterClientDemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44B865B420CB99470003D85D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		44B865B620CB99470003D85D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -54,6 +58,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44688F7E20CBA25D005C1B38 /* TwitterCore.framework in Frameworks */,
+				44688F7F20CBA25D005C1B38 /* TwitterKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +80,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		44688F7B20CBA25D005C1B38 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				44688F7C20CBA25D005C1B38 /* TwitterCore.framework */,
+				44688F7D20CBA25D005C1B38 /* TwitterKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		44B865A820CB99470003D85D = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +96,7 @@
 				44B865C820CB99490003D85D /* TwitterClientDemoAppTests */,
 				44B865D320CB99490003D85D /* TwitterClientDemoAppUITests */,
 				44B865B220CB99470003D85D /* Products */,
+				44688F7B20CBA25D005C1B38 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -167,6 +183,7 @@
 				44B865AD20CB99470003D85D /* Sources */,
 				44B865AE20CB99470003D85D /* Frameworks */,
 				44B865AF20CB99470003D85D /* Resources */,
+				44688F8020CBA29F005C1B38 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -282,6 +299,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		44688F8020CBA29F005C1B38 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/TwitterCore.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/TwitterKit.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		44B865AD20CB99470003D85D /* Sources */ = {
@@ -464,6 +499,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = AMV8UJ36K9;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = TwitterClientDemoApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -482,6 +521,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = AMV8UJ36K9;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = TwitterClientDemoApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
