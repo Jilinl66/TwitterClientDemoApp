@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		445D36A020CC425900ECD77D /* TwitterShareExtensionUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 445D369F20CC425900ECD77D /* TwitterShareExtensionUI.framework */; };
+		445D36A520CC4D3B00ECD77D /* CustomInputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445D36A420CC4D3B00ECD77D /* CustomInputTextField.swift */; };
 		44688F7E20CBA25D005C1B38 /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44688F7C20CBA25D005C1B38 /* TwitterCore.framework */; };
 		44688F7F20CBA25D005C1B38 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44688F7D20CBA25D005C1B38 /* TwitterKit.framework */; };
 		44688F8220CC3072005C1B38 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44688F8120CC3072005C1B38 /* LoginViewController.swift */; };
@@ -39,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		445D369F20CC425900ECD77D /* TwitterShareExtensionUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterShareExtensionUI.framework; path = Carthage/Build/iOS/TwitterShareExtensionUI.framework; sourceTree = "<group>"; };
+		445D36A420CC4D3B00ECD77D /* CustomInputTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomInputTextField.swift; sourceTree = "<group>"; };
 		44688F7C20CBA25D005C1B38 /* TwitterCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterCore.framework; path = Carthage/Build/iOS/TwitterCore.framework; sourceTree = "<group>"; };
 		44688F7D20CBA25D005C1B38 /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterKit.framework; path = Carthage/Build/iOS/TwitterKit.framework; sourceTree = "<group>"; };
 		44688F8120CC3072005C1B38 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -85,6 +87,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		445D36A320CC4B0600ECD77D /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				445D36A420CC4D3B00ECD77D /* CustomInputTextField.swift */,
+			);
+			name = "Custom Views";
+			sourceTree = "<group>";
+		};
 		44688F7B20CBA25D005C1B38 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -160,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				44B865B820CB99470003D85D /* Login.storyboard */,
+				445D36A320CC4B0600ECD77D /* Custom Views */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -331,6 +342,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				445D36A520CC4D3B00ECD77D /* CustomInputTextField.swift in Sources */,
 				44688F8520CC400A005C1B38 /* UIView+Extension.swift in Sources */,
 				44688F8220CC3072005C1B38 /* LoginViewController.swift in Sources */,
 				44B865B520CB99470003D85D /* AppDelegate.swift in Sources */,

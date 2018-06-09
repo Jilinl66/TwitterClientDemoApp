@@ -10,26 +10,36 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
-    @IBOutlet weak var usernameTextField: UITextField! {
+    @IBOutlet weak var usernameTextField: CustomInputTextField! {
         didSet {
             usernameTextField.inputAccessoryView = toolbar
+            usernameTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         }
     }
-    @IBOutlet weak var passwordTextField: UITextField! {
+    @IBOutlet weak var passwordTextField: CustomInputTextField! {
         didSet {
             passwordTextField.inputAccessoryView = toolbar
+            passwordTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         }
     }
     @IBOutlet weak var showPasswordButton: UIButton!
     @IBOutlet weak var loginButton: UIButton! {
         didSet {
             loginButton.roundCorner()
+            loginButton.disable()
         }
     }
-    
     @IBOutlet weak var coverView: UIView!
     
     var toolbar = UIToolbar()
+    
+    @objc private func textDidChange() {
+        if usernameTextField.hasText() && passwordTextField.hasText() {
+            loginButton.enable()
+        } else {
+            loginButton.disable()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -13,7 +13,7 @@ import UIKit
 
 extension UIView {
     @IBInspectable
-    public var cornerRadius: CGFloat {
+    var cornerRadius: CGFloat {
         get { return layer.cornerRadius }
         set { layer.cornerRadius = newValue }
     }
@@ -21,7 +21,23 @@ extension UIView {
 
 extension UIButton {
     // Natural corner radius
-    public func roundCorner() {
+    func roundCorner() {
         layer.cornerRadius = min(bounds.width / 2, bounds.height / 2)
+    }
+    
+    func enable() {
+        alpha = 1
+        isEnabled = true
+    }
+    
+    func disable() {
+        alpha = 0.25
+        isEnabled = false
+    }
+}
+
+extension UITextField {
+    func hasText() -> Bool {
+        return text != nil && !text!.isEmpty
     }
 }
