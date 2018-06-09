@@ -60,6 +60,9 @@
                                                 <state key="normal" title="Show">
                                                     <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="showPasswordButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SN9-ru-OP7"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -88,8 +91,11 @@
                                         <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="loginButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="y0l-rD-xcs"/>
+                                </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NdA-0E-MY5" userLabel="Cover View">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NdA-0E-MY5" userLabel="Cover View">
                                 <rect key="frame" x="-0.5" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ijj-mV-Tye" userLabel="Center View" customClass="DesignableUIView" customModule="TwitterClientDemoApp" customModuleProvider="target">
@@ -153,6 +159,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="coverView" destination="NdA-0E-MY5" id="Tgc-yE-kXY"/>
+                        <outlet property="loginButton" destination="Kol-gZ-roQ" id="TgG-QQ-QXY"/>
+                        <outlet property="passwordTextField" destination="5CY-TN-vYl" id="Qfj-XE-cYi"/>
+                        <outlet property="showPasswordButton" destination="ynq-Tk-H1y" id="knV-rR-HVK"/>
+                        <outlet property="usernameTextField" destination="lsh-FJ-7De" id="Y7M-bp-n1d"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
