@@ -82,9 +82,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     private func togglePassword() {
-        //TODO
-        print("Toggle password")
+        passwordTextField.isSecureTextEntry = !passwordTextField.isSecureTextEntry
+        if passwordTextField.isFirstResponder {
+            passwordTextField.becomeFirstResponder()
+            passwordTextField.layoutIfNeeded()
+        }
     }
+    
     @IBAction func loginButtonClicked(_ sender: UIButton) {
         coverView.isHidden = false
         login()
