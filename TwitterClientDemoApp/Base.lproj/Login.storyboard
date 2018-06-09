@@ -35,7 +35,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Phone, email or username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lsh-FJ-7De" customClass="DesignableTextField" customModule="OombaIphoneCommon" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Phone, email or username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lsh-FJ-7De" customClass="DesignableTextField" customModule="TwitterClientDemoApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="66.5" width="337.5" height="67"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -83,16 +83,20 @@
                                 <state key="normal" title="Sign in">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NdA-0E-MY5" userLabel="Cover View">
-                                <rect key="frame" x="-0.5" y="10" width="375" height="667"/>
+                                <rect key="frame" x="-0.5" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ijj-mV-Tye" userLabel="Center View">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ijj-mV-Tye" userLabel="Center View" customClass="DesignableUIView" customModule="TwitterClientDemoApp" customModuleProvider="target">
                                         <rect key="frame" x="112.5" y="258" width="150" height="150"/>
                                         <subviews>
-                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="V9R-GF-hOn">
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="V9R-GF-hOn">
                                                 <rect key="frame" x="57" y="57" width="37" height="37"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </activityIndicatorView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Authorizing..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HTz-de-hwI">
                                                 <rect key="frame" x="0.5" y="114.5" width="150" height="20.5"/>
@@ -105,9 +109,16 @@
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Ijj-mV-Tye" secondAttribute="height" multiplier="1:1" id="7c1-tS-wtD"/>
                                             <constraint firstAttribute="bottom" secondItem="HTz-de-hwI" secondAttribute="bottom" constant="15" id="avu-jO-9nO"/>
+                                            <constraint firstItem="V9R-GF-hOn" firstAttribute="centerX" secondItem="Ijj-mV-Tye" secondAttribute="centerX" id="mif-7u-dxE"/>
+                                            <constraint firstItem="V9R-GF-hOn" firstAttribute="centerY" secondItem="Ijj-mV-Tye" secondAttribute="centerY" id="pCQ-9Y-VqS"/>
                                             <constraint firstItem="HTz-de-hwI" firstAttribute="centerX" secondItem="Ijj-mV-Tye" secondAttribute="centerX" id="s27-Ba-XsI"/>
                                             <constraint firstItem="HTz-de-hwI" firstAttribute="width" secondItem="Ijj-mV-Tye" secondAttribute="width" id="soo-IB-uQg"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="12"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.25" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -116,20 +127,25 @@
                                     <constraint firstItem="Ijj-mV-Tye" firstAttribute="width" secondItem="NdA-0E-MY5" secondAttribute="width" multiplier="0.4" id="c2j-8j-rLb"/>
                                     <constraint firstItem="Ijj-mV-Tye" firstAttribute="centerX" secondItem="NdA-0E-MY5" secondAttribute="centerX" id="hxX-M3-o7C"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="8Qx-D5-qBh" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.9" id="0hF-u5-3Kc"/>
                             <constraint firstItem="Kol-gZ-roQ" firstAttribute="top" secondItem="8Qx-D5-qBh" secondAttribute="bottom" constant="20" id="4In-9g-fRS"/>
-                            <constraint firstItem="NdA-0E-MY5" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="9nL-hV-QJE"/>
+                            <constraint firstItem="NdA-0E-MY5" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="9nL-hV-QJE"/>
                             <constraint firstItem="Kol-gZ-roQ" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="LMJ-9n-ZX3"/>
                             <constraint firstItem="8Qx-D5-qBh" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.3" id="OIT-TJ-5O3"/>
                             <constraint firstItem="Kol-gZ-roQ" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.75" id="Q7l-D9-QOK"/>
                             <constraint firstItem="1FX-Oe-fD9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="RhC-cL-tZp"/>
                             <constraint firstItem="8Qx-D5-qBh" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="aYV-xB-qUh"/>
                             <constraint firstItem="8Qx-D5-qBh" firstAttribute="top" secondItem="1FX-Oe-fD9" secondAttribute="bottom" id="cwZ-SC-IbF"/>
-                            <constraint firstItem="NdA-0E-MY5" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="fXZ-Cg-ycg"/>
+                            <constraint firstItem="NdA-0E-MY5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fXZ-Cg-ycg"/>
                             <constraint firstItem="1FX-Oe-fD9" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="gWW-Hi-D2a"/>
                             <constraint firstItem="NdA-0E-MY5" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="h7A-LT-n78"/>
                             <constraint firstItem="1FX-Oe-fD9" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.2" id="kM6-EK-gNh"/>
