@@ -13,8 +13,8 @@ class CustomInputTextField: UITextField {
     var underlineLayer: CALayer!
     
     let strokeWidth: CGFloat = 2.0
-    let inactiveStrokeColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.15)
-    let activeStrokeColor = UIColor.white
+    let inactiveStrokeColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2)
+    let activeStrokeColor = UIColor.black
         
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,12 +24,22 @@ class CustomInputTextField: UITextField {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        initUnderlineLayer()
+        layer.addSublayer(underlineLayer)
     }
     
     private func initUnderlineLayer() {
         underlineLayer = CALayer()
-        layer.borderColor = inactiveStrokeColor.cgColor
-        layer.frame = CGRect(x: 0, y: self.frame.height - strokeWidth, width: self.frame.width, height: strokeWidth)
-        layer.borderWidth = strokeWidth / 2
+        underlineLayer.borderColor = inactiveStrokeColor.cgColor
+        underlineLayer.frame = CGRect(x: 0, y: self.frame.height - strokeWidth, width: self.frame.width, height: strokeWidth)
+        underlineLayer.borderWidth = strokeWidth / 2
+    }
+    
+    func setActiveBorder() {
+        underlineLayer.borderColor = activeStrokeColor.cgColor
+    }
+    
+    func setInactiveBorder() {
+        underlineLayer.borderColor = inactiveStrokeColor.cgColor
     }
 }

@@ -8,18 +8,20 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var usernameTextField: CustomInputTextField! {
         didSet {
             usernameTextField.inputAccessoryView = toolbar
             usernameTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+            usernameTextField.delegate = self
         }
     }
     @IBOutlet weak var passwordTextField: CustomInputTextField! {
         didSet {
             passwordTextField.inputAccessoryView = toolbar
             passwordTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+            passwordTextField.delegate = self
         }
     }
     @IBOutlet weak var showPasswordButton: UIButton!
@@ -32,12 +34,26 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var coverView: UIView!
     
     var toolbar = UIToolbar()
+//    lazy var allTextFields = [usernameTextField, passwordTextField]
     
     @objc private func textDidChange() {
         if usernameTextField.hasText() && passwordTextField.hasText() {
             loginButton.enable()
         } else {
             loginButton.disable()
+        }
+    }
+    
+    // TextField begin and end editing delegate
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if let customInputField = textField as? CustomInputTextField {
+            customInputField.setActiveBorder()
+        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if let customInputField = textField as? CustomInputTextField {
+            customInputField.setInactiveBorder()
         }
     }
     
