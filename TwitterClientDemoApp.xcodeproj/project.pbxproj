@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		44688F7E20CBA25D005C1B38 /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44688F7C20CBA25D005C1B38 /* TwitterCore.framework */; };
 		44688F7F20CBA25D005C1B38 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44688F7D20CBA25D005C1B38 /* TwitterKit.framework */; };
+		44688F8220CC3072005C1B38 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44688F8120CC3072005C1B38 /* LoginViewController.swift */; };
 		44B865B520CB99470003D85D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B865B420CB99470003D85D /* AppDelegate.swift */; };
-		44B865B720CB99470003D85D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B865B620CB99470003D85D /* ViewController.swift */; };
-		44B865BA20CB99470003D85D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44B865B820CB99470003D85D /* Main.storyboard */; };
+		44B865BA20CB99470003D85D /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44B865B820CB99470003D85D /* Login.storyboard */; };
 		44B865BC20CB99490003D85D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44B865BB20CB99490003D85D /* Assets.xcassets */; };
 		44B865BF20CB99490003D85D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44B865BD20CB99490003D85D /* LaunchScreen.storyboard */; };
 		44B865CA20CB99490003D85D /* TwitterClientDemoAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B865C920CB99490003D85D /* TwitterClientDemoAppTests.swift */; };
@@ -38,10 +38,10 @@
 /* Begin PBXFileReference section */
 		44688F7C20CBA25D005C1B38 /* TwitterCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterCore.framework; path = Carthage/Build/iOS/TwitterCore.framework; sourceTree = "<group>"; };
 		44688F7D20CBA25D005C1B38 /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterKit.framework; path = Carthage/Build/iOS/TwitterKit.framework; sourceTree = "<group>"; };
+		44688F8120CC3072005C1B38 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		44B865B120CB99470003D85D /* TwitterClientDemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterClientDemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44B865B420CB99470003D85D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		44B865B620CB99470003D85D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		44B865B920CB99470003D85D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		44B865B920CB99470003D85D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
 		44B865BB20CB99490003D85D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		44B865BE20CB99490003D85D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		44B865C020CB99490003D85D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -153,7 +153,7 @@
 		44B865E320CB9A320003D85D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				44B865B820CB99470003D85D /* Main.storyboard */,
+				44B865B820CB99470003D85D /* Login.storyboard */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -161,7 +161,7 @@
 		44B865E420CB9A410003D85D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				44B865B620CB99470003D85D /* ViewController.swift */,
+				44688F8120CC3072005C1B38 /* LoginViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -280,7 +280,7 @@
 			files = (
 				44B865BF20CB99490003D85D /* LaunchScreen.storyboard in Resources */,
 				44B865BC20CB99490003D85D /* Assets.xcassets in Resources */,
-				44B865BA20CB99470003D85D /* Main.storyboard in Resources */,
+				44B865BA20CB99470003D85D /* Login.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,7 +323,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				44B865B720CB99470003D85D /* ViewController.swift in Sources */,
+				44688F8220CC3072005C1B38 /* LoginViewController.swift in Sources */,
 				44B865B520CB99470003D85D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -360,12 +360,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		44B865B820CB99470003D85D /* Main.storyboard */ = {
+		44B865B820CB99470003D85D /* Login.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				44B865B920CB99470003D85D /* Base */,
 			);
-			name = Main.storyboard;
+			name = Login.storyboard;
 			sourceTree = "<group>";
 		};
 		44B865BD20CB99490003D85D /* LaunchScreen.storyboard */ = {
