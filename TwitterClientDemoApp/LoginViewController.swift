@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TwitterKit
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
 
@@ -28,7 +29,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var loginButton: UIButton! {
         didSet {
             loginButton.roundCorner()
-            loginButton.disable()
+            loginButton.enable()
         }
     }
     @IBOutlet weak var coverView: UIView!
@@ -73,8 +74,25 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         view.endEditing(true)
     }
     
+    private let searchSegue = "searchSegue"
     private func login() {
-        // TODO
+        if TWTRTwitter.sharedInstance().sessionStore.hasLoggedInUsers() {
+            self.performSegue(withIdentifier: searchSegue, sender: nil)
+        } else {
+            TWTRTwitter.sharedInstance().logIn { (session, error) in
+                if (session != nil) {
+                    self.log("signed in as: \(session?.userName ?? ""))")
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+                        self.performSegue(withIdentifier: self.searchSegue, sender: self)
+                    }
+                    
+                } else {
+                    self.coverView.isHidden = true
+                    self.log("error: \(String(describing: error?.localizedDescription))")
+                }
+            }
+        }
     }
     
     @IBAction func showPasswordButtonClicked(_ sender: UIButton) {
@@ -92,5 +110,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBAction func loginButtonClicked(_ sender: UIButton) {
         coverView.isHidden = false
         login()
+    }
+    
+    private func log(_ whatToLog: Any) {
+        debugPrint("Login: \(whatToLog)")
     }
 }

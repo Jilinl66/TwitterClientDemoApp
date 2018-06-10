@@ -30,13 +30,13 @@
                                 <rect key="frame" x="19" y="173.5" width="337.5" height="200"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in to Twitter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X8h-9M-SVa" userLabel="Header Label">
-                                        <rect key="frame" x="0.0" y="0.0" width="337.5" height="66.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="337.5" height="200"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Phone, email or username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lsh-FJ-7De" customClass="CustomInputTextField" customModule="TwitterClientDemoApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="66.5" width="337.5" height="67"/>
+                                    <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Phone, email or username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lsh-FJ-7De" customClass="CustomInputTextField" customModule="TwitterClientDemoApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="-173.5" width="337.5" height="0.0"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -46,17 +46,17 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ve6-XX-o4T">
-                                        <rect key="frame" x="0.0" y="133.5" width="337.5" height="66.5"/>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ve6-XX-o4T">
+                                        <rect key="frame" x="0.0" y="-173.5" width="337.5" height="0.0"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5CY-TN-vYl" customClass="CustomInputTextField" customModule="TwitterClientDemoApp" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="337.5" height="66.5"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5CY-TN-vYl" customClass="CustomInputTextField" customModule="TwitterClientDemoApp" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="337.5" height="100"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                             </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="38" placeholderIntrinsicHeight="66.5" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ynq-Tk-H1y" userLabel="Show Password Button">
-                                                <rect key="frame" x="289.5" y="0.0" width="38" height="66.5"/>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" placeholderIntrinsicWidth="38" placeholderIntrinsicHeight="66.5" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ynq-Tk-H1y" userLabel="Show Password Button">
+                                                <rect key="frame" x="289.5" y="0.0" width="38" height="100"/>
                                                 <state key="normal" title="Show">
                                                     <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -165,11 +165,20 @@
                         <outlet property="passwordTextField" destination="5CY-TN-vYl" id="Qfj-XE-cYi"/>
                         <outlet property="showPasswordButton" destination="ynq-Tk-H1y" id="knV-rR-HVK"/>
                         <outlet property="usernameTextField" destination="lsh-FJ-7De" id="Y7M-bp-n1d"/>
+                        <segue destination="Drz-8b-tjX" kind="show" identifier="searchSegue" id="Too-73-r6f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="32.799999999999997" y="33.733133433283363"/>
+        </scene>
+        <!--Search-->
+        <scene sceneID="28h-I6-mr8">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Search" id="Drz-8b-tjX" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ykh-O8-Hqa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="591" y="33"/>
         </scene>
     </scenes>
     <resources>
