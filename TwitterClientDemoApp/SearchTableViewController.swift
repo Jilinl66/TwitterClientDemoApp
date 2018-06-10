@@ -12,6 +12,7 @@ import UIKit
 class SearchTableViewController: UITableViewController {
 
     var recentSearches = [String]()
+    var searchController: UISearchController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,13 +20,24 @@ class SearchTableViewController: UITableViewController {
         recentSearches = ["Music", "Cooking"]
 
          clearsSelectionOnViewWillAppear = false
-         navigationItem.rightBarButtonItem = self.editButtonItem
+//         navigationItem.rightBarButtonItem = editButtonItem
+        
+        configureSearchController()
+    }
+    
+    private func configureSearchController() {
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.placeholder = "Search Twitter"
+        searchController.searchBar.sizeToFit()
+        navigationItem.titleView = searchController.searchBar
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
     }
     
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return recentSearches.count
     }
 
