@@ -26,17 +26,17 @@
                                     <constraint firstAttribute="width" secondItem="1FX-Oe-fD9" secondAttribute="height" multiplier="1:1" id="dzq-tJ-e12"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in to Twitter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X8h-9M-SVa" userLabel="Header Label">
+                                <rect key="frame" x="-1" y="173.5" width="375.5" height="24"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="8Qx-D5-qBh">
-                                <rect key="frame" x="19" y="173.5" width="337.5" height="200"/>
+                                <rect key="frame" x="19" y="197.5" width="337.5" height="200"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in to Twitter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X8h-9M-SVa" userLabel="Header Label">
-                                        <rect key="frame" x="0.0" y="0.0" width="337.5" height="200"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Phone, email or username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lsh-FJ-7De" customClass="CustomInputTextField" customModule="TwitterClientDemoApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="-173.5" width="337.5" height="0.0"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Phone, email or username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lsh-FJ-7De" customClass="CustomInputTextField" customModule="TwitterClientDemoApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="337.5" height="100"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -46,16 +46,16 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ve6-XX-o4T">
-                                        <rect key="frame" x="0.0" y="-173.5" width="337.5" height="0.0"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ve6-XX-o4T">
+                                        <rect key="frame" x="0.0" y="100" width="337.5" height="100"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5CY-TN-vYl" customClass="CustomInputTextField" customModule="TwitterClientDemoApp" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5CY-TN-vYl" customClass="CustomInputTextField" customModule="TwitterClientDemoApp" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="337.5" height="100"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                             </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" placeholderIntrinsicWidth="38" placeholderIntrinsicHeight="66.5" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ynq-Tk-H1y" userLabel="Show Password Button">
+                                            <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="38" placeholderIntrinsicHeight="66.5" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ynq-Tk-H1y" userLabel="Show Password Button">
                                                 <rect key="frame" x="289.5" y="0.0" width="38" height="100"/>
                                                 <state key="normal" title="Show">
                                                     <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -80,7 +80,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kol-gZ-roQ">
-                                <rect key="frame" x="47" y="393.5" width="281" height="33"/>
+                                <rect key="frame" x="47" y="417.5" width="281" height="33"/>
                                 <color key="backgroundColor" red="0.30588235289999999" green="0.69411764710000001" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Sign in">
@@ -144,17 +144,20 @@
                         <constraints>
                             <constraint firstItem="8Qx-D5-qBh" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.9" id="0hF-u5-3Kc"/>
                             <constraint firstItem="Kol-gZ-roQ" firstAttribute="top" secondItem="8Qx-D5-qBh" secondAttribute="bottom" constant="20" id="4In-9g-fRS"/>
+                            <constraint firstItem="X8h-9M-SVa" firstAttribute="top" secondItem="1FX-Oe-fD9" secondAttribute="bottom" id="5Ms-yd-bK8"/>
                             <constraint firstItem="NdA-0E-MY5" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="9nL-hV-QJE"/>
                             <constraint firstItem="Kol-gZ-roQ" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="LMJ-9n-ZX3"/>
+                            <constraint firstItem="X8h-9M-SVa" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="OEe-hE-RRE"/>
                             <constraint firstItem="8Qx-D5-qBh" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.3" id="OIT-TJ-5O3"/>
                             <constraint firstItem="Kol-gZ-roQ" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.75" id="Q7l-D9-QOK"/>
                             <constraint firstItem="1FX-Oe-fD9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="RhC-cL-tZp"/>
                             <constraint firstItem="8Qx-D5-qBh" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="aYV-xB-qUh"/>
-                            <constraint firstItem="8Qx-D5-qBh" firstAttribute="top" secondItem="1FX-Oe-fD9" secondAttribute="bottom" id="cwZ-SC-IbF"/>
+                            <constraint firstItem="8Qx-D5-qBh" firstAttribute="top" secondItem="X8h-9M-SVa" secondAttribute="bottom" id="cwZ-SC-IbF"/>
                             <constraint firstItem="NdA-0E-MY5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fXZ-Cg-ycg"/>
                             <constraint firstItem="1FX-Oe-fD9" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="gWW-Hi-D2a"/>
                             <constraint firstItem="NdA-0E-MY5" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="h7A-LT-n78"/>
                             <constraint firstItem="1FX-Oe-fD9" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.2" id="kM6-EK-gNh"/>
+                            <constraint firstItem="X8h-9M-SVa" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="kcQ-YC-BQp"/>
                             <constraint firstItem="NdA-0E-MY5" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="nAl-hk-Um1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
