@@ -11,6 +11,6 @@ import Foundation
 class Credentials {
     
     //TODO score in another security way
-    static let consumerKey = "xhQhlUwKvyfzkrRDxSZxmtVZr"
-    static let consumerSecret = "ChJisVubHgwVRUIOlLhEJtwddqnWMPSoifHZm0ApSDUf5csg9z"
+    static let consumerKey = "bImctU22rEeLsdXYrAh5nQhRq"
+    static let consumerSecret = "xE6L1xfnwqn3O16TAkqONj6SNAYG3BjTRDCkStHbn1w6Qd8H5D"
 }
