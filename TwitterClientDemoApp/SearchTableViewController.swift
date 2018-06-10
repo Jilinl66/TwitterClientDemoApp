@@ -65,6 +65,10 @@ class SearchTableViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Recent Searches"
+    }
+    
     override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         hideKeyboard()
     }
