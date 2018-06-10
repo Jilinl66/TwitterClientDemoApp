@@ -47,5 +47,12 @@ class SearchTableViewController: UITableViewController {
         cell.textLabel?.text = recentSearches[indexPath.row]
         return cell
     }
-
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        searchController.searchBar.resignFirstResponder()
+    }
 }
