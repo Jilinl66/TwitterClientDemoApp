@@ -12,20 +12,32 @@ import UIKit
 class SearchTableViewController: UITableViewController {
 
     var recentSearches = [String]()
-    var searchController: UISearchController!
-    var listTimelineTableViewController = ListTimelineViewController()
+    var searchController: UISearchController! {
+        didSet {
+            searchController.searchBar.delegate = self
+        }
+    }
+    var listTimelineTableViewController: ListTimelineViewController! {
+        didSet {
+            listTimelineTableViewController.hideKeyboardDelegate = self
+        }
+    }
+    
+    var searchText: String {
+        return searchController.searchBar.text?.trimmingCharacters(in: .whitespaces) ?? ""
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        recentSearches = ["Music", "Cooking"]
-
-         clearsSelectionOnViewWillAppear = false
+        
+        clearsSelectionOnViewWillAppear = false
         
         configureSearchController()
     }
     
     private func configureSearchController() {
+        listTimelineTableViewController = ListTimelineViewController()
+        
         searchController = UISearchController(searchResultsController: listTimelineTableViewController)
         searchController.searchBar.placeholder = "Search Twitter"
         searchController.searchBar.sizeToFit()
@@ -35,7 +47,7 @@ class SearchTableViewController: UITableViewController {
         definesPresentationContext = true
     }
     
-    // MARK: - Table view data source
+    // MARK: - Table view data source and delegate
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recentSearches.count
@@ -53,6 +65,23 @@ class SearchTableViewController: UITableViewController {
     }
     
     override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        hideKeyboard()
+    }
+}
+
+// Delegate function for pressing search button
+
+extension SearchTableViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if !searchText.isEmpty {
+            recentSearches.append(searchText)
+            tableView.reloadData()
+        }
+    }
+}
+
+extension SearchTableViewController: HideKeyboardDelegate {
+    func hideKeyboard() {
         searchController.searchBar.resignFirstResponder()
     }
 }

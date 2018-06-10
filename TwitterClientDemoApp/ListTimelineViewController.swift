@@ -8,7 +8,13 @@
 import UIKit
 import TwitterKit
 
+protocol HideKeyboardDelegate {
+    func hideKeyboard()
+}
+
 class ListTimelineViewController: TWTRTimelineViewController {
+    
+    var hideKeyboardDelegate: HideKeyboardDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,8 +33,9 @@ class ListTimelineViewController: TWTRTimelineViewController {
     // MARK: - Table view data source
     
     override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        searchController.searchBar.resignFirstResponder()
+        hideKeyboardDelegate?.hideKeyboard()
     }
+    
 //    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        return Int(countOfTweets())
 //    }
