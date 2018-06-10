@@ -18,16 +18,22 @@ class ListTimelineViewController: TWTRTimelineViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        dataSource = configureDataSource()
+        
         showTweetActions = true
     }
 
-    private func configureDataSource() -> TWTRTimelineDataSource {
-        let searchQuery = "nasa"
+    private func configureDataSource(q: String) -> TWTRTimelineDataSource {
+        let searchQuery = q
         let client = TWTRAPIClient()
         let dataSource = TWTRSearchTimelineDataSource(searchQuery: searchQuery, apiClient: client)
         dataSource.resultType = "popular"
         return dataSource
+    }
+    
+    func updateSearch(q: String) {
+        DispatchQueue.main.async {
+            self.dataSource = self.configureDataSource(q: q)
+        }
     }
     
     // MARK: - Table view data source

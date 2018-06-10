@@ -15,6 +15,7 @@ class SearchTableViewController: UITableViewController {
     var searchController: UISearchController! {
         didSet {
             searchController.searchBar.delegate = self
+            searchController.searchResultsUpdater = self
         }
     }
     var listTimelineTableViewController: ListTimelineViewController! {
@@ -77,6 +78,12 @@ extension SearchTableViewController: UISearchBarDelegate {
             recentSearches.append(searchText)
             tableView.reloadData()
         }
+    }
+}
+
+extension SearchTableViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        listTimelineTableViewController.updateSearch(q: searchText)
     }
 }
 
