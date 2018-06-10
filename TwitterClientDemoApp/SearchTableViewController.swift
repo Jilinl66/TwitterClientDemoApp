@@ -13,6 +13,7 @@ class SearchTableViewController: UITableViewController {
 
     var recentSearches = [String]()
     var searchController: UISearchController!
+    var listTimelineTableViewController = ListTimelineViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,13 +21,12 @@ class SearchTableViewController: UITableViewController {
         recentSearches = ["Music", "Cooking"]
 
          clearsSelectionOnViewWillAppear = false
-//         navigationItem.rightBarButtonItem = editButtonItem
         
         configureSearchController()
     }
     
     private func configureSearchController() {
-        searchController = UISearchController(searchResultsController: nil)
+        searchController = UISearchController(searchResultsController: listTimelineTableViewController)
         searchController.searchBar.placeholder = "Search Twitter"
         searchController.searchBar.sizeToFit()
         navigationItem.titleView = searchController.searchBar
