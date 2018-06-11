@@ -10,18 +10,26 @@ import TwitterKit
 
 class Request {
     
-    let searchEndpoint = "https://api.twitter.com/1.1/search/tweets.json"
-    
     let client = TWTRAPIClient()
     var clientError : NSError?
     
+    // Search request with params
     func searchRequest(q: String, count: Int = 15, resultType: String = "popular", completion: ((_ result: AnyObject?) -> Void)?) {
         let paramsPath = "?q=\(q)&result_type=\(resultType)&count=\(count))"
-        searchRequest(paramPath: paramsPath, completion: completion)
+        searchRequest(withParamPath: paramsPath, completion: completion)
     }
     
-    func searchRequest(paramPath: String, completion: ((_ result: AnyObject?) -> Void)?) {
-        let request = client.urlRequest(withMethod: "GET", urlString: searchEndpoint+paramPath, parameters: nil, error: &clientError)
+    // Search request with subpath
+    func searchRequest(withParamPath subPath : String, completion: ((_ result: AnyObject?) -> Void)?) {
+        let searchEndpoint = "https://api.twitter.com/1.1/search/tweets.json"
+        let path = searchEndpoint + subPath
+        
+        request(path: path, completion: completion)
+    }
+    
+    // Make api request
+    private func request(path: String, completion: ((_ result: AnyObject?) -> Void)?) {
+        let request = client.urlRequest(withMethod: "GET", urlString: path, parameters: nil, error: &clientError)
         
         client.sendTwitterRequest(request) { (response, data, connectionError) -> Void in
             if connectionError != nil {

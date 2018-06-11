@@ -11,6 +11,11 @@ import TwitterKit
 
 class TweetsTableViewController: UITableViewController {
 
+    struct TweetKeys {
+        static let searchMetadata = "search_metadata"
+        static let nextResults = "next_results"
+    }
+    
     var tweets = [TWTRTweet]()
     var nextResultSubpath: String?
     
@@ -19,6 +24,7 @@ class TweetsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Register TWTRTweetTableViewCell from Twitter Kit
         tableView.register(TWTRTweetTableViewCell.self, forCellReuseIdentifier: String(describing: TWTRTweetTableViewCell.self))
     }
 
@@ -29,11 +35,11 @@ class TweetsTableViewController: UITableViewController {
     
     func fetchedTweetsCallback(data: AnyObject?) -> Void {
         guard let object = data else {
-            self.log("No data got back")
+            self.log("No data returned")
             return
         }
-        print(object["search_metadata"] )
-        if let metadata = object["search_metadata"] as? [String: AnyObject], let nextResult = metadata["next_results"] as? String {
+//        print(object["search_metadata"] )
+        if let metadata = object[TweetKeys.searchMetadata] as? [String: AnyObject], let nextResult = metadata[TweetKeys.nextResults] as? String {
             self.nextResultSubpath = nextResult
         } else {
             self.nextResultSubpath = nil
@@ -59,7 +65,7 @@ class TweetsTableViewController: UITableViewController {
             cell.configure(with: tweets[indexPath.row])
             return cell
         } else {
-            fatalError("TableCell type doesn't match")
+            fatalError("TableCell type doesn't match type \(String(describing: TWTRTweetTableViewCell.self))")
         }
     }
  
@@ -77,7 +83,7 @@ class TweetsTableViewController: UITableViewController {
             if nextResultSubpath != nil {
                 let numOfMoreTweet = 5
                 let paramPath = "\(nextResultSubpath!)&count=\(numOfMoreTweet)"
-                Request().searchRequest(paramPath: paramPath, completion: fetchedTweetsCallback)
+                Request().searchRequest(withParamPath: paramPath, completion: fetchedTweetsCallback)
             }
         }
     }
