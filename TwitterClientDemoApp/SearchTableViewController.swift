@@ -8,6 +8,7 @@
 //
 
 import UIKit
+import TwitterKit
 
 class SearchTableViewController: UITableViewController {
 
@@ -25,15 +26,40 @@ class SearchTableViewController: UITableViewController {
     }
     
     var searchText: String {
-        return searchController.searchBar.text?.trimmingCharacters(in: .whitespaces) ?? ""
+        get {
+            return searchController.searchBar.text?.trimmingCharacters(in: .whitespaces) ?? ""
+        }
+        set {
+            DispatchQueue.main.async {
+                self.searchController.searchBar.text = newValue
+                self.searchController.isActive = true
+            }
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        clearsSelectionOnViewWillAppear = false
-        
         configureSearchController()
+        
+        let client = TWTRAPIClient()
+        let statusesShowEndpoint = "https://api.twitter.com/1.1/search/tweets.json?q=nasa&result_type=popular"
+        var clientError : NSError?
+        
+        let request = client.urlRequest(withMethod: "GET", urlString: statusesShowEndpoint, parameters: nil, error: &clientError)
+        
+        client.sendTwitterRequest(request) { (response, data, connectionError) -> Void in
+            if connectionError != nil {
+                print("Error: \(connectionError)")
+            }
+            
+            do {
+                let json = try JSONSerialization.jsonObject(with: data!, options: [])
+                print("json: \(json)")
+            } catch let jsonError as NSError {
+                print("json error: \(jsonError.localizedDescription)")
+            }
+        }
+        
     }
     
     private func configureSearchController() {
@@ -62,11 +88,16 @@ class SearchTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        searchText = recentSearches[indexPath.row]
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Recent Searches"
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return CGFloat(44)
     }
     
     override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
