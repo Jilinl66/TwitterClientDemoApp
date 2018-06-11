@@ -6,8 +6,6 @@
 //  Copyright © 2018 JilinStudio, Inc. All rights reserved.
 //
 
-import Foundation
-
 struct SearchParam {
     
     struct Keys {
@@ -30,7 +28,7 @@ struct SearchParam {
     }
     
     func generateParams() -> [String: Any] {
-        var params: [String: Any] = [Keys.query: query]
+        var params: [String: Any] = [Keys.query: preprocessQuery(query)]
         if count != nil {
             params[Keys.count] = "\(count!)"
         }
@@ -41,5 +39,10 @@ struct SearchParam {
             params[Keys.maxId] = maxId!
         }
         return params
+    }
+    
+    // Remove invalide character: back slash
+    private func preprocessQuery(_ query: String) -> String {
+        return query.replacingOccurrences(of: "\\", with: "")
     }
 }
