@@ -24,23 +24,27 @@ class TweetsTableViewController: UITableViewController {
 
     func updateSearch(q: String) {
         tweets = []
-        Request().searchRequest(q: q) { (data) in
-            guard let object = data else {
-                self.log("No data got back")
-                return
-            }
-            
-            if let metadata = object["search_metadata"] as? [String: AnyObject], let nextResult = metadata["next_results"] as? String {
-                self.nextResultSubpath = nextResult
-            }
-            if let statuses = object["statuses"] as? [[String: AnyObject]] {
-                for object in statuses {
-                    if let tweet = TWTRTweet(jsonDictionary: object) {
-                        self.tweets.append(tweet)
-                    }
+        Request().searchRequest(q: q, completion: fetchedTweetsCallback)
+    }
+    
+    func fetchedTweetsCallback(data: AnyObject?) -> Void {
+        guard let object = data else {
+            self.log("No data got back")
+            return
+        }
+        print(object["search_metadata"] )
+        if let metadata = object["search_metadata"] as? [String: AnyObject], let nextResult = metadata["next_results"] as? String {
+            self.nextResultSubpath = nextResult
+        } else {
+            self.nextResultSubpath = nil
+        }
+        if let statuses = object["statuses"] as? [[String: AnyObject]] {
+            for object in statuses {
+                if let tweet = TWTRTweet(jsonDictionary: object) {
+                    self.tweets.append(tweet)
                 }
-                self.tableView.reloadData()
             }
+            self.tableView.reloadData()
         }
     }
     
@@ -70,6 +74,11 @@ class TweetsTableViewController: UITableViewController {
             // Remember to move tweet at index path before deleting
             tweets.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            if nextResultSubpath != nil {
+                let numOfMoreTweet = 5
+                let paramPath = "\(nextResultSubpath!)&count=\(numOfMoreTweet)"
+                Request().searchRequest(paramPath: paramPath, completion: fetchedTweetsCallback)
+            }
         }
     }
     

@@ -15,9 +15,13 @@ class Request {
     let client = TWTRAPIClient()
     var clientError : NSError?
     
-    func searchRequest(q: String, completion: ((_ result: AnyObject?) -> Void)?) {
-        let paramsString = "?q=\(q)&result_type=popular&count=5"
-        let request = client.urlRequest(withMethod: "GET", urlString: searchEndpoint+paramsString, parameters: nil, error: &clientError)
+    func searchRequest(q: String, count: Int = 15, resultType: String = "popular", completion: ((_ result: AnyObject?) -> Void)?) {
+        let paramsPath = "?q=\(q)&result_type=\(resultType)&count=\(count))"
+        searchRequest(paramPath: paramsPath, completion: completion)
+    }
+    
+    func searchRequest(paramPath: String, completion: ((_ result: AnyObject?) -> Void)?) {
+        let request = client.urlRequest(withMethod: "GET", urlString: searchEndpoint+paramPath, parameters: nil, error: &clientError)
         
         client.sendTwitterRequest(request) { (response, data, connectionError) -> Void in
             if connectionError != nil {
