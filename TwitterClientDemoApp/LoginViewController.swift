@@ -113,6 +113,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     private func log(_ whatToLog: Any) {
-        debugPrint("Login: \(whatToLog)")
+        debugPrint("\(LoginViewController.self): \(whatToLog)")
     }
 }
