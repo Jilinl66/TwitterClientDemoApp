@@ -20,15 +20,19 @@ class Request {
         
         client.sendTwitterRequest(request) { (response, data, connectionError) -> Void in
             if connectionError != nil {
-                print("Error: \(connectionError)")
+                self.log("Error: \(String(describing: connectionError))")
             }
             
             do {
                 let json = try JSONSerialization.jsonObject(with: data!, options: [])
-                print("json: \(json)")
+                self.log("json: \(json)")
             } catch let jsonError as NSError {
-                print("json error: \(jsonError.localizedDescription)")
+                self.log("json error: \(jsonError.localizedDescription)")
             }
         }
+    }
+    
+    private func log(_ whatToLog: Any) {
+        debugPrint("\(Request.self): \(whatToLog)")
     }
 }

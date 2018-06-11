@@ -50,4 +50,7 @@ class TweetsTableViewController: UITableViewController {
         hideKeyboardDelegate?.hideKeyboard()
     }
 
+    private func log(_ whatToLog: Any) {
+        debugPrint("\(TweetsTableViewController.self): \(whatToLog)")
+    }
 }
