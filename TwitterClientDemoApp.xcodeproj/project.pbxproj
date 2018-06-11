@@ -25,6 +25,8 @@
 		44B865BF20CB99490003D85D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44B865BD20CB99490003D85D /* LaunchScreen.storyboard */; };
 		44B865CA20CB99490003D85D /* TwitterClientDemoAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B865C920CB99490003D85D /* TwitterClientDemoAppTests.swift */; };
 		44B865D520CB99490003D85D /* TwitterClientDemoAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B865D420CB99490003D85D /* TwitterClientDemoAppUITests.swift */; };
+		44FD73AE20CE506900929C16 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 44FD73AD20CE506900929C16 /* README.md */; };
+		44FD73B120CE554E00929C16 /* SearchParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FD73B020CE554E00929C16 /* SearchParam.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +71,8 @@
 		44B865D020CB99490003D85D /* TwitterClientDemoAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TwitterClientDemoAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		44B865D420CB99490003D85D /* TwitterClientDemoAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterClientDemoAppUITests.swift; sourceTree = "<group>"; };
 		44B865D620CB99490003D85D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		44FD73AD20CE506900929C16 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		44FD73B020CE554E00929C16 /* SearchParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchParam.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +134,7 @@
 		44B865A820CB99470003D85D = {
 			isa = PBXGroup;
 			children = (
+				44FD73AD20CE506900929C16 /* README.md */,
 				44B865B320CB99470003D85D /* TwitterClientDemoApp */,
 				44B865C820CB99490003D85D /* TwitterClientDemoAppTests */,
 				44B865D320CB99490003D85D /* TwitterClientDemoAppUITests */,
@@ -213,6 +218,7 @@
 				44688F8420CC400A005C1B38 /* UIView+Extension.swift */,
 				445ED20920CC7A010081F69B /* Credentials.swift */,
 				44A7E04720CE09D800512AF1 /* Request.swift */,
+				44FD73B020CE554E00929C16 /* SearchParam.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -324,6 +330,7 @@
 			files = (
 				44B865BF20CB99490003D85D /* LaunchScreen.storyboard in Resources */,
 				44B865BC20CB99490003D85D /* Assets.xcassets in Resources */,
+				44FD73AE20CE506900929C16 /* README.md in Resources */,
 				445ED20C20CCE6BC0081F69B /* Search.storyboard in Resources */,
 				44B865BA20CB99470003D85D /* Login.storyboard in Resources */,
 			);
@@ -378,6 +385,7 @@
 				445ED20A20CC7A010081F69B /* Credentials.swift in Sources */,
 				44688F8220CC3072005C1B38 /* LoginViewController.swift in Sources */,
 				44B865B520CB99470003D85D /* AppDelegate.swift in Sources */,
+				44FD73B120CE554E00929C16 /* SearchParam.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

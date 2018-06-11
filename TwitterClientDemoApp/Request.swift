@@ -16,22 +16,16 @@ class Request {
     var clientError : NSError?
     
     // Search request with params
-    func searchRequest(q: String, count: Int = 15, resultType: String = "popular", completion: ((_ result: AnyObject?) -> Void)?) {
-        let paramsPath = "?q=\(q)&result_type=\(resultType)&count=\(count))"
-        searchRequest(withParamPath: paramsPath, completion: completion)
-    }
-    
-    // Search request with subpath
-    func searchRequest(withParamPath subPath : String, completion: ((_ result: AnyObject?) -> Void)?) {
+    func searchRequest(searchParam: SearchParam, completion: ((_ result: AnyObject?) -> Void)?) {
         let searchEndpoint = "\(twitterServer)/search/tweets.json"
-        let path = searchEndpoint + subPath
-        
-        request(path: path, completion: completion)
+        if searchParam.isValidQuery() {
+            request(path: searchEndpoint, params: searchParam.generateParams(), completion: completion)
+        }
     }
     
     // Make api request
-    private func request(path: String, completion: ((_ result: AnyObject?) -> Void)?) {
-        let request = client.urlRequest(withMethod: "GET", urlString: path, parameters: nil, error: &clientError)
+    private func request(path: String, params: [String: Any]?, completion: ((_ result: AnyObject?) ->  Void)?) {
+        let request = client.urlRequest(withMethod: "GET", urlString: path, parameters: params, error: &clientError)
         
         client.sendTwitterRequest(request) { (response, data, connectionError) -> Void in
             if connectionError != nil {

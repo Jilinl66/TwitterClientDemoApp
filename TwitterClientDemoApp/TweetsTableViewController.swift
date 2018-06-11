@@ -17,9 +17,12 @@ class TweetsTableViewController: UITableViewController {
     }
     
     var tweets = [TWTRTweet]()
-    var nextResultSubpath: String?
+    var currSearchParam: SearchParam!
+    var nextMaxId: String?
     
     var hideKeyboardDelegate: HideKeyboardDelegate?
+    
+    var noResultLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,9 +31,24 @@ class TweetsTableViewController: UITableViewController {
         tableView.register(TWTRTweetTableViewCell.self, forCellReuseIdentifier: String(describing: TWTRTweetTableViewCell.self))
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let labelWidth = CGFloat(100)
+        let labelHeight = CGFloat(40)
+        noResultLabel = UILabel(frame: CGRect(x: tableView.bounds.midX - labelWidth/2, y: tableView.bounds.midY - labelHeight/2, width: labelWidth, height: labelHeight))
+        noResultLabel.text = "No Tweets"
+        noResultLabel.sizeToFit()
+        tableView.addSubview(noResultLabel)
+        
+        noResultLabel.isHidden = true
+    }
+    
     func updateSearch(q: String) {
         tweets = []
-        Request().searchRequest(q: q, completion: fetchedTweetsCallback)
+        nextMaxId = nil
+        currSearchParam = SearchParam(query: q, resultType: "popular")
+        Request().searchRequest(searchParam: currSearchParam, completion: fetchedTweetsCallback)
     }
     
     func fetchedTweetsCallback(data: AnyObject?) -> Void {
@@ -38,11 +56,14 @@ class TweetsTableViewController: UITableViewController {
             self.log("No data returned")
             return
         }
-//        print(object["search_metadata"] )
         if let metadata = object[TweetKeys.searchMetadata] as? [String: AnyObject], let nextResult = metadata[TweetKeys.nextResults] as? String {
-            self.nextResultSubpath = nextResult
+            if let maxId = parseMaxId(nextResult: nextResult) {
+                self.nextMaxId = maxId
+            } else {
+                self.nextMaxId = nil
+            }
         } else {
-            self.nextResultSubpath = nil
+            self.nextMaxId = nil
         }
         if let statuses = object["statuses"] as? [[String: AnyObject]] {
             for object in statuses {
@@ -54,9 +75,21 @@ class TweetsTableViewController: UITableViewController {
         }
     }
     
+    private func parseMaxId(nextResult: String) -> String? {
+        let components = nextResult.components(separatedBy: ["=", "&"])
+        if components.count >= 2 {
+            return components[1]
+        } else {
+            return nil
+        }
+    }
+    
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if noResultLabel != nil {
+            noResultLabel.isHidden = tweets.count != 0
+        }
         return tweets.count
     }
 
@@ -80,10 +113,11 @@ class TweetsTableViewController: UITableViewController {
             // Remember to move tweet at index path before deleting
             tweets.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-            if nextResultSubpath != nil {
+            if nextMaxId != nil {
                 let numOfMoreTweet = 5
-                let paramPath = "\(nextResultSubpath!)&count=\(numOfMoreTweet)"
-                Request().searchRequest(withParamPath: paramPath, completion: fetchedTweetsCallback)
+                currSearchParam.count = numOfMoreTweet
+                currSearchParam.maxId = nextMaxId
+                Request().searchRequest(searchParam: currSearchParam, completion: fetchedTweetsCallback)
             }
         }
     }
