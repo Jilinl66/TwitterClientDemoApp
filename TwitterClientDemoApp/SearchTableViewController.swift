@@ -36,10 +36,18 @@ class SearchTableViewController: UITableViewController {
             }
         }
     }
+    var lastSearchText: String?
+    
+    var timer: Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureSearchController()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        timer?.invalidate()
     }
     
     private func configureSearchController() {
@@ -98,7 +106,18 @@ extension SearchTableViewController: UISearchBarDelegate {
 
 extension SearchTableViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        listTimelineTableViewController.updateSearch(q: searchText)
+        if timer == nil {
+            timer = Timer.scheduledTimer(withTimeInterval: 0.6, repeats: true) { _ in
+                self.checkAndUpdateSearch()
+            }
+        }
+    }
+    
+    private func checkAndUpdateSearch() {
+        if !searchText.isEmpty && (lastSearchText == nil || searchText != lastSearchText!) {
+            listTimelineTableViewController.updateSearch(q: searchText)
+            lastSearchText = searchText
+        }
     }
 }
 
