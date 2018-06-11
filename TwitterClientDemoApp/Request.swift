@@ -18,7 +18,9 @@ class Request {
     // Search request with params
     func searchRequest(searchParam: SearchParam, completion: ((_ result: AnyObject?) -> Void)?) {
         let searchEndpoint = "\(twitterServer)/search/tweets.json"
-        request(path: searchEndpoint, params: searchParam.generateParams(), completion: completion)
+        if searchParam.isValidQuery() {
+            request(path: searchEndpoint, params: searchParam.generateParams(), completion: completion)
+        }
     }
     
     // Make api request

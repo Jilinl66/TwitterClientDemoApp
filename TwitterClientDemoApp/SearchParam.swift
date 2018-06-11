@@ -43,8 +43,26 @@ struct SearchParam {
     
     // Remove invalide character: back slash
     private func preprocessQuery(_ query: String) -> String {
-        return query.replacingOccurrences(of: "\\", with: "")
-                    .replacingOccurrences(of: ",", with: "")
-                    .replacingOccurrences(of: ".", with: "")
+        let specialCharacter = ["\\", ",", ".", "@", "*", "^", "$", "#"]
+        var newQuery = ""
+        var hasHashTag = false
+        for char in query {
+            let specialString = String(char)
+            if !specialCharacter.contains(specialString) {
+                newQuery += specialString
+            }
+            if specialString == "#" {
+                hasHashTag = true
+            }
+        }
+        if hasHashTag {
+            newQuery = "#\(newQuery)"
+        }
+        return newQuery
+    }
+    
+    func isValidQuery() -> Bool {
+        let newQuery =  preprocessQuery(query)
+        return !newQuery.isEmpty && newQuery != "#"
     }
 }
