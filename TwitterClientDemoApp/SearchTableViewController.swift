@@ -8,24 +8,51 @@
 //
 
 import UIKit
+import TwitterKit
 
 class SearchTableViewController: UITableViewController {
 
     var recentSearches = [String]()
-    var searchController: UISearchController!
-    var listTimelineTableViewController = ListTimelineViewController()
+    var searchController: UISearchController! {
+        didSet {
+            searchController.searchBar.delegate = self
+            searchController.searchResultsUpdater = self
+        }
+    }
+    var listTimelineTableViewController: ListTimelineViewController! {
+        didSet {
+            listTimelineTableViewController.hideKeyboardDelegate = self
+        }
+    }
+    
+    var searchText: String {
+        get {
+            return searchController.searchBar.text?.trimmingCharacters(in: .whitespaces) ?? ""
+        }
+        set {
+            DispatchQueue.main.async {
+                self.searchController.searchBar.text = newValue
+                self.searchController.isActive = true
+            }
+        }
+    }
+    var lastSearchText: String?
+    
+    var timer: Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        recentSearches = ["Music", "Cooking"]
-
-         clearsSelectionOnViewWillAppear = false
-        
         configureSearchController()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        timer?.invalidate()
+    }
+    
     private func configureSearchController() {
+        listTimelineTableViewController = ListTimelineViewController()
+        
         searchController = UISearchController(searchResultsController: listTimelineTableViewController)
         searchController.searchBar.placeholder = "Search Twitter"
         searchController.searchBar.sizeToFit()
@@ -35,7 +62,7 @@ class SearchTableViewController: UITableViewController {
         definesPresentationContext = true
     }
     
-    // MARK: - Table view data source
+    // MARK: - Table view data source and delegate
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recentSearches.count
@@ -47,5 +74,55 @@ class SearchTableViewController: UITableViewController {
         cell.textLabel?.text = recentSearches[indexPath.row]
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        searchText = recentSearches[indexPath.row]
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Recent Searches"
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return CGFloat(44)
+    }
+    
+    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        hideKeyboard()
+    }
+}
 
+// Delegate function for pressing search button
+
+extension SearchTableViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if !searchText.isEmpty {
+            recentSearches.append(searchText)
+            tableView.reloadData()
+        }
+    }
+}
+
+extension SearchTableViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        if timer == nil {
+            timer = Timer.scheduledTimer(withTimeInterval: 0.6, repeats: true) { _ in
+                self.checkAndUpdateSearch()
+            }
+        }
+    }
+    
+    private func checkAndUpdateSearch() {
+        if !searchText.isEmpty && (lastSearchText == nil || searchText != lastSearchText!) {
+            listTimelineTableViewController.updateSearch(q: searchText)
+            lastSearchText = searchText
+        }
+    }
+}
+
+extension SearchTableViewController: HideKeyboardDelegate {
+    func hideKeyboard() {
+        searchController.searchBar.resignFirstResponder()
+    }
 }
