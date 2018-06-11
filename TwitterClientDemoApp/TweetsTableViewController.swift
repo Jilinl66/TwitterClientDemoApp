@@ -32,8 +32,8 @@ class TweetsTableViewController: UITableViewController {
             if let metadata = object["search_metadata"] as? [String: AnyObject], let nextResult = metadata["next_results"] as? String {
                 self.nextResultSubpath = nextResult
             }
-            if let status = object["statuses"] as? [[String: AnyObject]] {
-                for object in status {
+            if let statuses = object["statuses"] as? [[String: AnyObject]] {
+                for object in statuses {
                     if let tweet = TWTRTweet(jsonDictionary: object) {
                         self.tweets.append(tweet)
                     }
@@ -66,6 +66,8 @@ class TweetsTableViewController: UITableViewController {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            // Remember to move tweet at index path before deleting
+            tweets.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
