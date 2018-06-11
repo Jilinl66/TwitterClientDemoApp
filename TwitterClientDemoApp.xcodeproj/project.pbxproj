@@ -17,6 +17,8 @@
 		44688F8220CC3072005C1B38 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44688F8120CC3072005C1B38 /* LoginViewController.swift */; };
 		44688F8520CC400A005C1B38 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44688F8420CC400A005C1B38 /* UIView+Extension.swift */; };
 		44A7E04420CDD6C100512AF1 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A7E04320CDD6C100512AF1 /* SearchTableViewController.swift */; };
+		44A7E04820CE09D800512AF1 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A7E04720CE09D800512AF1 /* Request.swift */; };
+		44A7E04A20CE117500512AF1 /* TweetsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A7E04920CE117500512AF1 /* TweetsTableViewController.swift */; };
 		44B865B520CB99470003D85D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B865B420CB99470003D85D /* AppDelegate.swift */; };
 		44B865BA20CB99470003D85D /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44B865B820CB99470003D85D /* Login.storyboard */; };
 		44B865BC20CB99490003D85D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44B865BB20CB99490003D85D /* Assets.xcassets */; };
@@ -53,6 +55,8 @@
 		44688F8120CC3072005C1B38 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		44688F8420CC400A005C1B38 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		44A7E04320CDD6C100512AF1 /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
+		44A7E04720CE09D800512AF1 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		44A7E04920CE117500512AF1 /* TweetsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetsTableViewController.swift; sourceTree = "<group>"; };
 		44B865B120CB99470003D85D /* TwitterClientDemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterClientDemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44B865B420CB99470003D85D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		44B865B920CB99470003D85D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
@@ -118,6 +122,7 @@
 			children = (
 				445ED20E20CCE8580081F69B /* ListTimelineViewController.swift */,
 				44A7E04320CDD6C100512AF1 /* SearchTableViewController.swift */,
+				44A7E04920CE117500512AF1 /* TweetsTableViewController.swift */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -207,6 +212,7 @@
 			children = (
 				44688F8420CC400A005C1B38 /* UIView+Extension.swift */,
 				445ED20920CC7A010081F69B /* Credentials.swift */,
+				44A7E04720CE09D800512AF1 /* Request.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -364,6 +370,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				445D36A520CC4D3B00ECD77D /* CustomInputTextField.swift in Sources */,
+				44A7E04A20CE117500512AF1 /* TweetsTableViewController.swift in Sources */,
+				44A7E04820CE09D800512AF1 /* Request.swift in Sources */,
 				44688F8520CC400A005C1B38 /* UIView+Extension.swift in Sources */,
 				445ED20F20CCE8580081F69B /* ListTimelineViewController.swift in Sources */,
 				44A7E04420CDD6C100512AF1 /* SearchTableViewController.swift in Sources */,

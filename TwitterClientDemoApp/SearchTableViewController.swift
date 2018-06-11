@@ -19,9 +19,9 @@ class SearchTableViewController: UITableViewController {
             searchController.searchResultsUpdater = self
         }
     }
-    var listTimelineTableViewController: ListTimelineViewController! {
+    var tweetsTableViewController: TweetsTableViewController! {
         didSet {
-            listTimelineTableViewController.hideKeyboardDelegate = self
+            tweetsTableViewController.hideKeyboardDelegate = self
         }
     }
     
@@ -51,9 +51,9 @@ class SearchTableViewController: UITableViewController {
     }
     
     private func configureSearchController() {
-        listTimelineTableViewController = ListTimelineViewController()
+        tweetsTableViewController = TweetsTableViewController()
         
-        searchController = UISearchController(searchResultsController: listTimelineTableViewController)
+        searchController = UISearchController(searchResultsController: tweetsTableViewController)
         searchController.searchBar.placeholder = "Search Twitter"
         searchController.searchBar.sizeToFit()
         navigationItem.titleView = searchController.searchBar
@@ -115,7 +115,7 @@ extension SearchTableViewController: UISearchResultsUpdating {
     
     private func checkAndUpdateSearch() {
         if !searchText.isEmpty && (lastSearchText == nil || searchText != lastSearchText!) {
-            listTimelineTableViewController.updateSearch(q: searchText)
+            tweetsTableViewController.updateSearch(q: searchText)
             lastSearchText = searchText
         }
     }
