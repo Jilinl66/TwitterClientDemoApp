@@ -7,32 +7,51 @@
 //
 
 import UIKit
+import TwitterKit
 
 class TweetsTableViewController: UITableViewController {
 
+    var tweets = [TWTRTweet]()
+    var nextResultSubpath: String?
+    
     var hideKeyboardDelegate: HideKeyboardDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
 
     func updateSearch(q: String) {
         Request().searchRequest(q: q) { (data) in
-            self.log(data)
+            guard let object = data else {
+                self.log("No data got back")
+                return
+            }
+            
+            if let metadata = object["search_metadata"] as? [String: AnyObject], let nextResult = metadata["next_results"] as? String {
+                self.nextResultSubpath = nextResult
+            }
+            if let status = object["statuses"] as? [[String: AnyObject]] {
+                for object in status {
+                    if let tweet = TWTRTweet(jsonDictionary: object) {
+                        self.tweets.append(tweet)
+                    }
+                }
+                self.tableView.reloadData()
+            }
         }
     }
     
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return tweets.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
+        
         // Configure the cell...
-
         return cell
     }
 
