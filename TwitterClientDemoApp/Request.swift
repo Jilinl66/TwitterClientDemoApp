@@ -13,7 +13,7 @@ class Request {
     let client = TWTRAPIClient()
     var clientError : NSError?
     
-    func searchRequest(q: String) {
+    func searchRequest(q: String, completion: ((Any) -> Void)?) {
         let searchEndpoint = "https://api.twitter.com/1.1/search/tweets.json"
         let paramsString = "?q=\(q)&result_type=popular&count=5"
         let request = client.urlRequest(withMethod: "GET", urlString: searchEndpoint+paramsString, parameters: nil, error: &clientError)
@@ -25,7 +25,7 @@ class Request {
             
             do {
                 let json = try JSONSerialization.jsonObject(with: data!, options: [])
-                self.log("json: \(json)")
+                completion?(json)
             } catch let jsonError as NSError {
                 self.log("json error: \(jsonError.localizedDescription)")
             }
@@ -33,6 +33,6 @@ class Request {
     }
     
     private func log(_ whatToLog: Any) {
-        debugPrint("\(Request.self): \(whatToLog)")
+        print("\(Request.self): \(whatToLog)")
     }
 }

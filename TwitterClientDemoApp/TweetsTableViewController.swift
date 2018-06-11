@@ -17,7 +17,9 @@ class TweetsTableViewController: UITableViewController {
     }
 
     func updateSearch(q: String) {
-        //TOOD
+        Request().searchRequest(q: q) { (data) in
+            self.log(data)
+        }
     }
     
     // MARK: - Table view data source
