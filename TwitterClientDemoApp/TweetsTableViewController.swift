@@ -17,7 +17,8 @@ class TweetsTableViewController: UITableViewController {
     }
     
     var tweets = [TWTRTweet]()
-    var nextResultSubpath: String?
+    var currSearchParam: SearchParam!
+    var nextMaxId: String?
     
     var hideKeyboardDelegate: HideKeyboardDelegate?
     
@@ -30,7 +31,9 @@ class TweetsTableViewController: UITableViewController {
 
     func updateSearch(q: String) {
         tweets = []
-        Request().searchRequest(q: q, completion: fetchedTweetsCallback)
+        nextMaxId = nil
+        currSearchParam = SearchParam(query: q, resultType: "popular")
+        Request().searchRequest(searchParam: currSearchParam, completion: fetchedTweetsCallback)
     }
     
     func fetchedTweetsCallback(data: AnyObject?) -> Void {
@@ -38,11 +41,15 @@ class TweetsTableViewController: UITableViewController {
             self.log("No data returned")
             return
         }
-//        print(object["search_metadata"] )
+        print(object["search_metadata"] )
         if let metadata = object[TweetKeys.searchMetadata] as? [String: AnyObject], let nextResult = metadata[TweetKeys.nextResults] as? String {
-            self.nextResultSubpath = nextResult
+            if let maxId = parseMaxId(nextResult: nextResult) {
+                self.nextMaxId = maxId
+            } else {
+                self.nextMaxId = nil
+            }
         } else {
-            self.nextResultSubpath = nil
+            self.nextMaxId = nil
         }
         if let statuses = object["statuses"] as? [[String: AnyObject]] {
             for object in statuses {
@@ -51,6 +58,16 @@ class TweetsTableViewController: UITableViewController {
                 }
             }
             self.tableView.reloadData()
+        }
+    }
+
+    
+    private func parseMaxId(nextResult: String) -> String? {
+        let components = nextResult.components(separatedBy: ["=", "&"])
+        if components.count >= 2 {
+            return components[1]
+        } else {
+            return nil
         }
     }
     
@@ -80,10 +97,11 @@ class TweetsTableViewController: UITableViewController {
             // Remember to move tweet at index path before deleting
             tweets.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-            if nextResultSubpath != nil {
+            if nextMaxId != nil {
                 let numOfMoreTweet = 5
-                let paramPath = "\(nextResultSubpath!)&count=\(numOfMoreTweet)"
-                Request().searchRequest(withParamPath: paramPath, completion: fetchedTweetsCallback)
+                currSearchParam.count = numOfMoreTweet
+                currSearchParam.maxId = nextMaxId
+                Request().searchRequest(searchParam: currSearchParam, completion: fetchedTweetsCallback)
             }
         }
     }

@@ -26,6 +26,7 @@
 		44B865CA20CB99490003D85D /* TwitterClientDemoAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B865C920CB99490003D85D /* TwitterClientDemoAppTests.swift */; };
 		44B865D520CB99490003D85D /* TwitterClientDemoAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B865D420CB99490003D85D /* TwitterClientDemoAppUITests.swift */; };
 		44FD73AE20CE506900929C16 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 44FD73AD20CE506900929C16 /* README.md */; };
+		44FD73B120CE554E00929C16 /* SearchParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FD73B020CE554E00929C16 /* SearchParam.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		44B865D420CB99490003D85D /* TwitterClientDemoAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterClientDemoAppUITests.swift; sourceTree = "<group>"; };
 		44B865D620CB99490003D85D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		44FD73AD20CE506900929C16 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		44FD73B020CE554E00929C16 /* SearchParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchParam.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +218,7 @@
 				44688F8420CC400A005C1B38 /* UIView+Extension.swift */,
 				445ED20920CC7A010081F69B /* Credentials.swift */,
 				44A7E04720CE09D800512AF1 /* Request.swift */,
+				44FD73B020CE554E00929C16 /* SearchParam.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -382,6 +385,7 @@
 				445ED20A20CC7A010081F69B /* Credentials.swift in Sources */,
 				44688F8220CC3072005C1B38 /* LoginViewController.swift in Sources */,
 				44B865B520CB99470003D85D /* AppDelegate.swift in Sources */,
+				44FD73B120CE554E00929C16 /* SearchParam.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
