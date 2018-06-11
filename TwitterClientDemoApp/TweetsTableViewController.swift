@@ -22,6 +22,8 @@ class TweetsTableViewController: UITableViewController {
     
     var hideKeyboardDelegate: HideKeyboardDelegate?
     
+    var noResultLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,6 +31,19 @@ class TweetsTableViewController: UITableViewController {
         tableView.register(TWTRTweetTableViewCell.self, forCellReuseIdentifier: String(describing: TWTRTweetTableViewCell.self))
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let labelWidth = CGFloat(100)
+        let labelHeight = CGFloat(40)
+        noResultLabel = UILabel(frame: CGRect(x: tableView.bounds.midX - labelWidth/2, y: tableView.bounds.midY - labelHeight/2, width: labelWidth, height: labelHeight))
+        noResultLabel.text = "No Tweets"
+        noResultLabel.sizeToFit()
+        tableView.addSubview(noResultLabel)
+        
+        noResultLabel.isHidden = true
+    }
+    
     func updateSearch(q: String) {
         tweets = []
         nextMaxId = nil
@@ -59,7 +74,6 @@ class TweetsTableViewController: UITableViewController {
             self.tableView.reloadData()
         }
     }
-
     
     private func parseMaxId(nextResult: String) -> String? {
         let components = nextResult.components(separatedBy: ["=", "&"])
@@ -73,6 +87,9 @@ class TweetsTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if noResultLabel != nil {
+            noResultLabel.isHidden = tweets.count != 0
+        }
         return tweets.count
     }
 
