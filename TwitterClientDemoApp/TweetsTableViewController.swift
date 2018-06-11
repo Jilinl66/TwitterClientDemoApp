@@ -41,7 +41,6 @@ class TweetsTableViewController: UITableViewController {
             self.log("No data returned")
             return
         }
-        print(object["search_metadata"] )
         if let metadata = object[TweetKeys.searchMetadata] as? [String: AnyObject], let nextResult = metadata[TweetKeys.nextResults] as? String {
             if let maxId = parseMaxId(nextResult: nextResult) {
                 self.nextMaxId = maxId
