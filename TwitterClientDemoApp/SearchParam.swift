@@ -44,5 +44,7 @@ struct SearchParam {
     // Remove invalide character: back slash
     private func preprocessQuery(_ query: String) -> String {
         return query.replacingOccurrences(of: "\\", with: "")
+                    .replacingOccurrences(of: ",", with: "")
+                    .replacingOccurrences(of: ".", with: "")
     }
 }
