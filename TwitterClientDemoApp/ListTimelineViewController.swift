@@ -8,6 +8,10 @@
 import UIKit
 import TwitterKit
 
+/*
+    This class is not actually used, this is only for purpose of demo TWTRTimelineViewController
+ */
+
 protocol HideKeyboardDelegate {
     func hideKeyboard()
 }
@@ -35,24 +39,7 @@ class ListTimelineViewController: TWTRTimelineViewController {
         }
     }
     
-    // MARK: - Table view data source
-    
     override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         hideKeyboardDelegate?.hideKeyboard()
-    }
-
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-//            tableView.beginUpdates()
-//            // Delete the row from the data source
-//            tableView.deleteRows(at: [indexPath], with: .fade)
-//            tableView.endUpdates()
-        }
     }
 }

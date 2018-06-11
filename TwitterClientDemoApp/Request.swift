@@ -10,6 +10,8 @@ import TwitterKit
 
 class Request {
     
+    let twitterServer = "https://api.twitter.com/1.1"
+    
     let client = TWTRAPIClient()
     var clientError : NSError?
     
@@ -21,7 +23,7 @@ class Request {
     
     // Search request with subpath
     func searchRequest(withParamPath subPath : String, completion: ((_ result: AnyObject?) -> Void)?) {
-        let searchEndpoint = "https://api.twitter.com/1.1/search/tweets.json"
+        let searchEndpoint = "\(twitterServer)/search/tweets.json"
         let path = searchEndpoint + subPath
         
         request(path: path, completion: completion)

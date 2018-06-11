@@ -39,6 +39,7 @@ class SearchTableViewController: UITableViewController {
     var lastSearchText: String?
     
     var timer: Timer?
+    var searchTimeInterval: TimeInterval = 0.6
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,15 +55,17 @@ class SearchTableViewController: UITableViewController {
         tweetsTableViewController = TweetsTableViewController()
         
         searchController = UISearchController(searchResultsController: tweetsTableViewController)
+        
         searchController.searchBar.placeholder = "Search Twitter"
         searchController.searchBar.sizeToFit()
-        navigationItem.titleView = searchController.searchBar
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.dimsBackgroundDuringPresentation = false
+        
+        navigationItem.titleView = searchController.searchBar
         definesPresentationContext = true
     }
     
-    // MARK: - Table view data source and delegate
+    // MARK: Table view data source and delegate
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recentSearches.count
@@ -89,7 +92,8 @@ class SearchTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return CGFloat(44)
+        let headerHeight = CGFloat(44)
+        return headerHeight
     }
     
     override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
@@ -97,7 +101,7 @@ class SearchTableViewController: UITableViewController {
     }
 }
 
-// Delegate function for pressing search button
+// MARK: Delegate function for pressing search button
 
 extension SearchTableViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -111,7 +115,7 @@ extension SearchTableViewController: UISearchBarDelegate {
 extension SearchTableViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         if timer == nil {
-            timer = Timer.scheduledTimer(withTimeInterval: 0.6, repeats: true) { _ in
+            timer = Timer.scheduledTimer(withTimeInterval: searchTimeInterval, repeats: true) { _ in
                 self.checkAndUpdateSearch()
             }
         }
@@ -124,6 +128,8 @@ extension SearchTableViewController: UISearchResultsUpdating {
         }
     }
 }
+
+// MARK: Table view delegate function for hiding keyboard
 
 extension SearchTableViewController: HideKeyboardDelegate {
     func hideKeyboard() {
