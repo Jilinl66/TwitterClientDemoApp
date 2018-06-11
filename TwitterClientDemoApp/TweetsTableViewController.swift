@@ -19,6 +19,7 @@ class TweetsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.register(TWTRTweetTableViewCell.self, forCellReuseIdentifier: String(describing: TWTRTweetTableViewCell.self))
     }
 
     func updateSearch(q: String) {
@@ -49,12 +50,14 @@ class TweetsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-        
-        // Configure the cell...
-        return cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: TWTRTweetTableViewCell.self), for: indexPath) as? TWTRTweetTableViewCell {
+            cell.configure(with: tweets[indexPath.row])
+            return cell
+        } else {
+            fatalError("TableCell type doesn't match")
+        }
     }
-
+ 
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
