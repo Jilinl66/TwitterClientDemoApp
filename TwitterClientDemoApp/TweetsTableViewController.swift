@@ -23,6 +23,7 @@ class TweetsTableViewController: UITableViewController {
     }
 
     func updateSearch(q: String) {
+        tweets = []
         Request().searchRequest(q: q) { (data) in
             guard let object = data else {
                 self.log("No data got back")

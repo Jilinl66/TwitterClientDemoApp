@@ -81,7 +81,11 @@ class SearchTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Recent Searches"
+        if recentSearches.count == 0 {
+            return "Searching for people, topics, or keywords"
+        } else {
+            return "Recent Searches"
+        }
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
