@@ -10,7 +10,7 @@ import Foundation
 
 class Credentials {
     
-    //TODO score in another security way
-    static let consumerKey = "bImctU22rEeLsdXYrAh5nQhRq"
-    static let consumerSecret = "xE6L1xfnwqn3O16TAkqONj6SNAYG3BjTRDCkStHbn1w6Qd8H5D"
+    // Email me for key before running the project
+    static let consumerKey = ""
+    static let consumerSecret = ""
 }
